@@ -53,7 +53,9 @@ fishes = [{"name":"Pufferfish", "price":50, "description":"Quite venomous fish."
         {"name":"Devilfish", "price":70, "description":"The devil fish or giant devil ray is a species of ray in the family Mobulidae. "},
         {"name":"Siamese-fighting fish", "price":50, "description":"The Siamese fighting fish commonly known as the betta, is a freshwater fish native to Southeast Asia. "}]
 
-v = "v4.3"
+
+from bot import fork_version as v
+
 
 class Economy(commands.Cog):
 
