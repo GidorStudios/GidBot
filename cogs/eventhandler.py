@@ -36,13 +36,10 @@ from PIL import Image, ImageChops
 from discord.ext.commands import has_permissions, CheckFailure, MissingRequiredArgument, BadArgument, CommandOnCooldown
 import aiofiles
 
-v = "v4.3"
+from bot import fork_version as v
 
 class EventHandler(commands.Cog):
-    
-
-    
-
+   
     def __init__(self, client):
         self.client = client
        
