@@ -74,6 +74,7 @@ async def setup():
 	client.load_extension(f'cogs.economy')
 	client.load_extension(f'cogs.dashboard')
 	client.load_extension(f'cogs.general')
+	client.load_extension(f'cogs.music')
 	client.load_extension(f'cogs.moderation')
 	client.load_extension(f'cogs.fun')
 	client.load_extension(f'cogs.giveaway')
