@@ -34,8 +34,7 @@ from PIL import Image, ImageChops
 from discord.ext.commands import has_permissions, has_guild_permissions, CheckFailure, MissingRequiredArgument, BadArgument, CommandOnCooldown
 from datetime import timedelta
 
-
-v = "v4.3"
+from bot import fork_version as v
 
 class Moderation(commands.Cog):
 
