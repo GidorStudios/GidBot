@@ -46,23 +46,6 @@ intents.guilds = True
 intents.presence = True
 from discord_slash import SlashCommand, SlashContext
 
-
-
-def get_prefix(bot, message):
-	if not message.guild:
-		return commands.when_mentioned_or("g.")(bot, message)
-	
-	with open("prefixes.json", "r") as f:
-		prefixes = json.load(f)
-
-	if str(message.guild.id) not in prefixes:
-		return commands.when_mentioned_or("g.")(bot, message)
-
-	prefix = prefixes[str(message.guild.id)]
-	return commands.when_mentioned_or(prefix)(bot, message)
-
-
-
 client = commands.AutoShardedBot(command_prefix="g." help_command=None, intents=intents)
 
 
