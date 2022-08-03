@@ -1,3 +1,9 @@
+
+v = "4.3"
+token="YOUR TOKEN"
+fork_owner_id = 0123456780123 #your user id
+fork_version = "1.0"
+
 import random
 import hashlib
 import time
@@ -40,7 +46,6 @@ intents.guilds = True
 intents.presence = True
 from discord_slash import SlashCommand, SlashContext
 
-v = "v4.3"
 
 
 def get_prefix(bot, message):
@@ -66,7 +71,7 @@ import dbl
 
 def is_me():
     def predicate(ctx):
-        return ctx.message.author.id == "Your id"
+        return ctx.message.author.id == fork_owner_id
     return commands.check(predicate)
 
 @client.event
@@ -77,13 +82,8 @@ async def on_ready():
 	while not counter > 0:
 		await client.change_presence(status=discord.Status.idle, activity=discord.Game(name='Used on {} servers'.format(len(client.guilds)), type=discord.ActivityType.watching)) 
 		await asyncio.sleep(40)
-		await client.change_presence(status=discord.Status.idle, activity=discord.Game(name='Type g.help | {} EOS'.format(v), type=0))
+		await client.change_presence(status=discord.Status.idle, activity=discord.Game(name='Type g.help | {}-Fork'.format(fork_version), type=0))
 		await asyncio.sleep(40)
-		await client.change_presence(status=discord.Status.idle, activity=discord.Game(name=random.choice(["December 1",
-		"The End?",
-		"The deadline is coming.",
-		"Till' it's over.",
-        "End of Support"]), type=0))
 
 
 async def setup():
