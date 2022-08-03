@@ -66,7 +66,7 @@ regionals = {'a': '\N{REGIONAL INDICATOR SYMBOL LETTER A}', 'b': '\N{REGIONAL IN
 
 
 
-v = "v4.3"
+from bot import fork_version as v
 
 class Fun(commands.Cog):
 
