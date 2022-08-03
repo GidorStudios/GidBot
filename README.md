@@ -12,4 +12,15 @@ The source code was still written in discord.py 1.7.3 so keep that in mind, that
 # Setup
 
 Create an application on discord developers website and a bot user.
-Fill in the variables at the top of bot.py
+Fill in the variables at the top of bot.py and install the requirements.txt from the folder.
+
+Open cmd and type in this:
+```
+pip install -r requirements.txt
+```
+
+Now the bot should be ready to run. Type in this to run the bot.
+```
+py bot.py
+```
+
