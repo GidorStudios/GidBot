@@ -35,7 +35,9 @@ from discord.ext.commands import has_permissions, CheckFailure, MissingRequiredA
 
 start_time = time.time()
 
-v = "v4.3"
+from bot import v
+from bot import fork_version
+from bot import fork_owner_id
 
 
 page1 = discord.Embed(title="Normal", description="**g.ping** | Pong\n**g.userinfo @user** | Information about the user\n**g.news** | Shows the information about the latest update\n**g.botinfo** | Information about the bot.\n**g.invite** | Bot invite, Support server and website.\n**g.uptime** | Current bot uptime.\n**g.serverinfo** | Information about the current server.\n **g.upvote** | Upvote the bot on discordbots.org to get it to more people.\n**g.channelinfo** | Information about the current channel.", color=discord.Colour.blue())
@@ -143,7 +145,9 @@ class General(commands.Cog):
             colour = discord.Colour.blue(),
             timestamp=datetime.datetime.utcnow()
         )
-        embed.add_field(name='Bot Information', value=f"""󠀠\n**Forked from Gid Bot on Github**\n\n**Originnaly made by:** __Gidor#7092__, __FightMan01__\n**Released:** {self.client.user.created_at.__format__('%A, %Y. %m. %d. @ %H:%M:%S')}\n**Version:** {v}\n**Watching:** *{len(self.client.guilds)}* Servers & *{self.client.shard_count}* Shard\n**Members:** {len(self.client.users)}\n**Libraries:** Python 3.8.3, Discord.py v1.7.3\n**CPU:** Your system\n**Running On:** Your OS""")
+        owner = await client.fetch_user(fork_owner_id)
+        embed.add_field(name="Fork Owner",value=f"{owner.name}#{owner.discriminator}", inline=True)
+        embed.add_field(name='Bot Information', value=f"""󠀠\n\n**Forked from Gid Bot on Github**\n**Originnaly made by:** __Gidor#7092__\n**\n**Version:** {fork_version}\n**Watching:** *{len(self.client.guilds)}* Servers & *{self.client.shard_count}* Shard\n**Members:** {len(self.client.users)}\n**Libraries:** Python 3.8.3, Discord.py v1.7.3\n**CPU:** Your system\n**Running On:** Your OS""", inline=False)
         embed.set_footer(text='GidBot | {}'.format(v))
         await ctx.send(embed=embed)
 
@@ -192,19 +196,6 @@ class General(commands.Cog):
         
         await ctx.send(embed=embed)
 
-
-    @commands.command()	
-    async def news(self, ctx):
-        with open("news.json") as l:
-            news = json.load(l)
-        title = str(news["title"])
-        news = str(news["news"])
-        embed = discord.Embed(
-        title="News",
-        colour=discord.Colour.blue()
-        )
-        embed.add_field(name="{}".format(title), value="{}".format(news), inline=False)
-        await ctx.send(embed=embed)
 
     @commands.command()	
     async def ping(self, ctx):
