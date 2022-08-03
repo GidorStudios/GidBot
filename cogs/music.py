@@ -39,7 +39,7 @@ from discord.ext.commands import has_permissions, CheckFailure, MissingRequiredA
 import pafy
 
 queue_len = 0
-v = "v4.3"
+from bot import fork_version as v
 
 class Music(commands.Cog):
 	def __init__(self, client):
