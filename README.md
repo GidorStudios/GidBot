@@ -11,7 +11,7 @@ A new bot are in the works and expected to release in 2022 summer.
 
 # Setup
 
-Create an application on discord developers website and a bot user.
+Create an application on discord developers website and a bot user, copy the token of the bot.
 Fill in the variables at the top of bot.py and install the requirements.txt from the folder.
 
 Open cmd and type in this:
