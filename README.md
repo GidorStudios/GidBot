@@ -7,7 +7,7 @@ it can get the job done for a server with friends and stuff.
 
 A new bot are in the works and expected to release in 2022 summer.
 
-The source code was still written in discord.py 1.7.3 so keep that in mind, that it's deprecated.
+The source code was still written in discord.py 1.7.3 and python 3.8 so keep that in mind, that it's deprecated.
 
 # Setup
 
