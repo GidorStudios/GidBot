@@ -34,8 +34,7 @@ from asyncio.subprocess import PIPE
 from io import BytesIO
 from PIL import Image, ImageChops 
 from discord.ext.commands import has_permissions, has_guild_permissions, CheckFailure, MissingRequiredArgument, BadArgument, CommandOnCooldown
-
-v = "v4.3"
+from bot import fork_version as v
 
 class Giveaway(commands.Cog):
 
