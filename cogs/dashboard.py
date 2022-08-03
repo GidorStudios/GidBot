@@ -34,10 +34,8 @@ from PIL import Image, ImageChops
 from discord.ext.commands import has_permissions, CheckFailure, MissingRequiredArgument, BadArgument, CommandOnCooldown
 
 from discord_slash import cog_ext, SlashContext
-v = "v4.3"
 
-
-
+from bot import fork_version as v
 
 class Dashboard(commands.Cog):
 
