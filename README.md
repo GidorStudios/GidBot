@@ -9,6 +9,8 @@ The source code was still written in discord.py 1.7.3 and python 3.8 so keep tha
 
 A new bot are in the works and expected to release in 2022 summer.
 
+KEEP IN MIND I OMLY PROVIDE MINIMAL SUPPORT FOR GID BOT
+
 # Setup
 
 Create an application on discord developers website and a bot user, copy the token of the bot.
