@@ -9,7 +9,7 @@ The source code was still written in discord.py 1.7.3 and python 3.8 so keep tha
 
 KEEP IN MIND I OMLY PROVIDE MINIMAL SUPPORT FOR GID BOT
 
-##Update 2023.11.5 This no longer works, but can be a good starting point for new developers.
+## Update 2023.11.5 This no longer works, but can be a good starting point for new developers.
 
 # Setup
 
