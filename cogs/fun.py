@@ -1,6 +1,4 @@
 import random
-import hashlib
-import time
 import datetime
 from discord.ext import commands
 from asyncio import run
@@ -10,23 +8,7 @@ from discord.voice_client import VoiceClient
 from discord.ext.commands import Bot, when_mentioned_or
 from bs4 import BeautifulSoup
 import asyncio
-import os, json
-import threading
-import logger
-import psutil
-import urllib
-import subprocess
-import ast
-import inspect
-import io
-import textwrap
-import traceback
-import PIL
 from contextlib import redirect_stdout
-import re
-import nacl
-import youtube_dl
-import aiohttp
 import requests as rq
 from asyncio.subprocess import PIPE
 from io import BytesIO
@@ -137,7 +119,7 @@ class Fun(commands.Cog):
         
     @commands.command()
     async def cat(self, ctx):
-        response = rq.get('https://aws.random.cat/meow')
+        response = rq.get('https://aws.random.cat/meow') # This API is heavily unstable most of the time its down
         data = response.json()
         
         embed = discord.Embed(	
@@ -147,8 +129,7 @@ class Fun(commands.Cog):
         embed.set_image(url=data['file'])
         await ctx.send(embed=embed)
 
-
-        
+    
     @commands.command()
     async def dog(self, ctx):
         r = rq.get("https://random.dog/woof")
@@ -270,7 +251,6 @@ class Fun(commands.Cog):
         embed.set_footer(text='GidBot | {}'.format(v))
         await ctx.send(embed=embed)
     
-        
     @commands.command(pass_context=True)
     async def gennumber(self, ctx, one: int, two: int):
         embed = discord.Embed(
@@ -344,7 +324,7 @@ class Fun(commands.Cog):
 
     @commands.command()		
     async def spinner(self, ctx, skip):
-        number = random.randint(15, 145)
+        number = random.randint(15, 145) # Change the emoji of the spinner here if you want to have this command. Otherwise just delete it altogether.
         if skip == "speed":       
             await ctx.send(f'<:fidgetspinner:541938644169261056> <@{ctx.message.author.id}> Your fidget spinner is spinning...<:fidgetspinner:541938644169261056>')
             await asyncio.sleep(int(number))

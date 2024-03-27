@@ -1,5 +1,3 @@
-import random
-import hashlib
 import time
 import datetime
 from discord.ext import commands
@@ -10,23 +8,7 @@ from discord.voice_client import VoiceClient
 from discord.ext.commands import Bot, when_mentioned_or
 from bs4 import BeautifulSoup
 import asyncio
-import os, json
-import threading
-import logger
-import psutil
-import urllib
-import subprocess
-import ast
-import inspect
-import io
-import textwrap
-import traceback
-import PIL
 from contextlib import redirect_stdout
-import re
-import nacl
-import youtube_dl
-import aiohttp
 import requests as rq
 from asyncio.subprocess import PIPE
 from io import BytesIO
@@ -145,7 +127,7 @@ class General(commands.Cog):
             colour = discord.Colour.blue(),
             timestamp=datetime.datetime.utcnow()
         )
-        owner = await client.fetch_user(fork_owner_id)
+        owner = await self.client.fetch_user(fork_owner_id)
         embed.add_field(name="Fork Owner",value=f"{owner.name}#{owner.discriminator}", inline=True)
         embed.add_field(name='Bot Information', value=f"""󠀠\n\n**Forked from Gid Bot on Github**\n**Originnaly made by:** __Gidor#7092__\n**\n**Version:** {fork_version}\n**Watching:** *{len(self.client.guilds)}* Servers & *{self.client.shard_count}* Shard\n**Members:** {len(self.client.users)}\n**Libraries:** Python 3.8.3, Discord.py v1.7.3\n**CPU:** Your system\n**Running On:** Your OS""", inline=False)
         embed.set_footer(text='GidBot | {}'.format(v))

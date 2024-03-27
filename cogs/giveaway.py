@@ -1,7 +1,5 @@
 ﻿	
 from random import choice
-import hashlib
-import time
 from datetime import datetime, timedelta
 from discord.ext import commands
 from asyncio import run
@@ -11,24 +9,7 @@ from discord.voice_client import VoiceClient
 from discord.ext.commands import Bot, when_mentioned_or
 from bs4 import BeautifulSoup
 import asyncio
-import os, json
-import threading
-import logger
-import psutil
-import urllib
-import subprocess
-import ast
-import inspect
-import io
-import sched
-import textwrap
-import traceback
-import PIL
 from contextlib import redirect_stdout
-import re
-import nacl
-import youtube_dl
-import aiohttp
 import requests as rq
 from asyncio.subprocess import PIPE
 from io import BytesIO

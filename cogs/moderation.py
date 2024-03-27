@@ -1,6 +1,3 @@
-import random
-import hashlib
-import time
 import datetime
 from discord.ext import commands
 from asyncio import run
@@ -10,23 +7,7 @@ from discord.voice_client import VoiceClient
 from discord.ext.commands import Bot, when_mentioned_or
 from bs4 import BeautifulSoup
 import asyncio
-import os, json
-import threading
-import logger
-import psutil
-import urllib
-import subprocess
-import ast
-import inspect
-import io
-import textwrap
-import traceback
-import PIL
 from contextlib import redirect_stdout
-import re
-import nacl
-import youtube_dl
-import aiohttp
 import requests as rq
 from asyncio.subprocess import PIPE
 from io import BytesIO
@@ -88,7 +69,8 @@ class Moderation(commands.Cog):
             embed1.add_field(name="Mute Notification", value='You have been Muted in **{}** for: **{}** by **{}**! :disappointed_relieved:'.format(ctx.message.guild.name, reason, ctx.message.author))
             embed1.set_footer(text='GidBot | {}'.format(v))
             await user.send(embed=embed1)
-
+        except:
+            return
 
     @commands.command(aliases=['hban'])
     @commands.has_permissions(ban_members=True)
@@ -97,17 +79,12 @@ class Moderation(commands.Cog):
         embed = discord.Embed( description=f"<a:check:677157258320150530> User with ID: **{usid}** has been banned by: {ctx.message.author.mention}", color=discord.Color.blue())
         await ctx.send(embed=embed)
         
-        
-        
-        
-
     @commands.command(aliases=['uban'])
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, usid:int):
         await ctx.guild.unban(discord.Object(id=usid))   
         embed = discord.Embed( description=f"<a:check:677157258320150530> User with ID: **{usid}** has been unbanned by: {ctx.message.author.mention}", color=discord.Color.blue())
-        await ctx.send(embed=embed)
-        
+        await ctx.send(embed=embed)   
         
     @hackban.error
     async def hackban_error(self, ctx, error):
@@ -125,8 +102,6 @@ class Moderation(commands.Cog):
             embed=discord.Embed(description=":x: I can't find an User with an ID like that.", colour=discord.Colour.red())
             embed.set_footer(text='GidBot | {}'.format(v))
             await ctx.send(embed=embed)
-
-
 
     @unban.error
     async def unban_error(self, ctx, error):
@@ -169,8 +144,9 @@ class Moderation(commands.Cog):
             embed1.add_field(name="Mute Notification", value='You have been Temporarily Muted in **{}** for **{} minute** with reason **{}** by **{}**! :disappointed_relieved:'.format(ctx.message.guild.name, time, reason, ctx.message.author))
             embed1.set_footer(text='GidBot | {}'.format(v))
             await user.send(embed=embed1)
-
-        await asyncio.sleep(time*60)
+        except:
+            print(".")
+        await asyncio.sleep(time*60) # In modern bots its best to use a database for these
         await member.remove_roles(role, reason="Gid Bot Moderation. Auto Unmute from tempmute.")
         try:
             user = self.client.get_user(member.id)
@@ -182,7 +158,6 @@ class Moderation(commands.Cog):
             await user.send(embed=embed1)
         except:
             return
-
 
     @tempmute.error
     async def tempmute_error(self, ctx, error):
@@ -216,7 +191,6 @@ class Moderation(commands.Cog):
         embed=discord.Embed(colour=discord.Colour.blue())
         embed.add_field(name='User Unmuted', value="User <@{}> was unmuted by <@{}> ".format(member.id, ctx.message.author.id), inline=True)
         embed.set_footer(text="GidBot | {}".format(v))
-        await c.send("Mute command used in **{}**=**{}**".format(ctx.message.guild.id, ctx.message.guild.name))
         try:
             user = self.client.get_user(member.id)
             embed1 = discord.Embed(
@@ -226,7 +200,7 @@ class Moderation(commands.Cog):
             embed1.set_footer(text='GidBot | {}'.format(v))
             await user.send(embed=embed1)
         except:
-
+            return
 
     @unmute.error
     async def unmute_error(self, ctx, error):
@@ -260,7 +234,7 @@ class Moderation(commands.Cog):
             embed.add_field(name="Banned!", value='<a:check:677157258320150530> **{}** Was Banned by: <@{}> for: **{}**!<:DPESgun:478896794965770242>'.format(member.name, ctx.message.author.id, reason))
             embed.set_footer(text='GidBot | {}'.format(v))
             await ctx.send(embed=embed)
-            await c.send("Ban command used in **{}**=**{}**".format(ctx.message.guild.id, ctx.message.guild.name))
+
             try:
                 user = self.client.get_user(member.id)
                 embed1 = discord.Embed(
@@ -270,9 +244,7 @@ class Moderation(commands.Cog):
                 embed1.set_footer(text='GidBot | {}'.format(v))
                 await user.send(embed=embed1)
             except:
-                 await c.send("Ban command used in **{}**=**{}** (Banned but can't dm user.".format(ctx.message.guild.id, ctx.message.guild.name))	
-
-
+                print(".")
         except:
             embed=discord.Embed(description=":x:  I can't ban users, they have higher roles than me.", colour=discord.Colour.red())
             embed.set_footer(text='GidBot | {}'.format(v))
@@ -309,7 +281,6 @@ class Moderation(commands.Cog):
             embed.add_field(name="Kicked!", value='<a:check:677157258320150530> **{}** Was kicked by: <@{}> for: **{}**! <:DPESgun:478896794965770242>'.format(member.name, ctx.message.author.id, reason))
             embed.set_footer(text='GidBot | {}'.format(v))
             await ctx.send(embed=embed)
-            await c.send("Kick command used in **{}**=**{}**".format(ctx.message.guild.id, ctx.message.guild.name))	
             try:
                 user = self.client.get_user(member.id)
                 embed1 = discord.Embed(
@@ -318,7 +289,8 @@ class Moderation(commands.Cog):
                 embed1.add_field(name="Kick Notification", value='You have been Kicked from **{}** with the reason: **{}** by **{}**! <:DPESgun:478896794965770242>'.format(ctx.message.guild.name, reason, ctx.message.author))
                 embed1.set_footer(text='GidBot | {}'.format(v))
                 await user.send(embed=embed1)
-    
+            except:
+                print(".")
 
         except:
             embed=discord.Embed(description=":x: I can't kick users, they have higher roles than me.", colour=discord.Colour.red())
@@ -356,7 +328,6 @@ class Moderation(commands.Cog):
         await message_1.add_reaction(emoji="✅") 
         await message_1.add_reaction(emoji="❌") 
         await message_1.add_reaction(emoji="🤷") 
-        
         
         await asyncio.sleep(time*60)
         await ctx.send("<a:check:677157258320150530> Poll has ended!")

@@ -1,6 +1,3 @@
-import random
-import hashlib
-import time
 import datetime
 from typing import Type
 from discord.errors import ClientException
@@ -13,23 +10,8 @@ from discord.voice_client import VoiceClient
 from discord.ext.commands import Bot, when_mentioned_or
 from bs4 import BeautifulSoup
 import asyncio
-import os, json
-import threading
-import logger
-import psutil
-import urllib
-import subprocess
-import ast
-import inspect
-import io
-import textwrap
-import traceback
-import PIL
 from contextlib import redirect_stdout
-import re
-import nacl
 import youtube_dl
-import aiohttp
 import requests as rq
 from asyncio.subprocess import PIPE
 from io import BytesIO
@@ -49,7 +31,7 @@ class Music(commands.Cog):
 
 	@commands.Cog.listener()
 	async def on_ready(self):
-		print("Music1 module loaded.")
+		print("Music module loaded.")
 
 	def setup(self):
 		for guild in self.client.guilds:

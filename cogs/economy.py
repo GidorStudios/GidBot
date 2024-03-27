@@ -1,32 +1,12 @@
 import random
-import hashlib
-import time
-import datetime
 from discord.ext import commands
 from asyncio import run
 import discord
-from discord import channel, opus
 from discord.voice_client import VoiceClient
 from discord.ext.commands import Bot, when_mentioned_or
 from bs4 import BeautifulSoup
-import asyncio
-import os, json
-import threading
-import logger
-import psutil
-import urllib
-import subprocess
-import ast
-import inspect
-import io
-import textwrap
-import traceback
-import PIL
+import json
 from contextlib import redirect_stdout
-import re
-import nacl
-import youtube_dl
-import aiohttp
 import requests as rq
 from asyncio.subprocess import PIPE
 from io import BytesIO
@@ -56,9 +36,7 @@ fishes = [{"name":"Pufferfish", "price":50, "description":"Quite venomous fish."
 
 from bot import fork_version as v
 
-
 class Economy(commands.Cog):
-
     def __init__(self, client):
         self.client = client
 
@@ -66,7 +44,6 @@ class Economy(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print("Economy module loaded.")
-
 
     #commands
     @commands.command(aliases=["bal"])
@@ -92,7 +69,6 @@ class Economy(commands.Cog):
         users = await get_bank_data()
 
         earnings = random.randrange(550, 1351)
-
 
         workmessages = [f"You worked hard, and earned **{earnings}$**.",
                         f"You worked as a discord bot developer, and earned {earnings}**$.",
@@ -536,7 +512,6 @@ class Economy(commands.Cog):
 
         await ctx.send(embed = em)
 
-
 async def sell_this(user,item_name,amount,price=None):
     itemname = item_name
     name_ = None
@@ -555,7 +530,6 @@ async def sell_this(user,item_name,amount,price=None):
     users = await get_bank_data()
 
     bal = await update_bank(user)
-
 
     try:
         index = 0
@@ -602,7 +576,6 @@ async def sell_fish(user,item_name,amount):
 
     bal = await update_bank(user)
 
-
     try:
         index = 0
         t = None
@@ -648,7 +621,6 @@ async def del_this(user,item_name,amount,price=None):
 
     bal = await update_bank(user)
 
-
     try:
         index = 0
         t = None
@@ -674,7 +646,6 @@ async def del_this(user,item_name,amount,price=None):
     await update_bank(user)
 
     return [True,"Worked"]
-
 
 
 async def open_account(user):
@@ -707,8 +678,6 @@ async def update_bank(user, change=0, mode="wallet"):
     bal = [users[str(user.id)]["wallet"], users[str(user.id)]["bank"]]
 
     return bal
-
-
 
 async def add_item(user, item_name, amount):
     item_name = item_name
@@ -750,9 +719,6 @@ async def add_item(user, item_name, amount):
     await update_bank(user,amount*0, "wallet")
 
     return [True, "Worked"]
-
-
-
 
 async def buy_this(user, item_name, amount):
     item_name = item_name

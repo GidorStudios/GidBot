@@ -14,3 +14,4 @@ opuslib
 logger
 Pillow
 discord-py-slash-command
+pafy

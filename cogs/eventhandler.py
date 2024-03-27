@@ -1,7 +1,3 @@
-
-import random
-import hashlib
-import time
 import datetime
 from discord.enums import AuditLogAction
 from discord.ext import commands
@@ -11,30 +7,13 @@ from discord import channel, opus
 from discord.voice_client import VoiceClient
 from discord.ext.commands import Bot, when_mentioned_or
 from bs4 import BeautifulSoup
-import asyncio
-import os, json
-import threading
-import logger
-import psutil
-import urllib
-import subprocess
-import ast
-import inspect
-import io
-import textwrap
-import traceback
-import PIL
+import json
 from contextlib import redirect_stdout
-import re
-import nacl
-import youtube_dl
-import aiohttp
 import requests as rq
 from asyncio.subprocess import PIPE
 from io import BytesIO
 from PIL import Image, ImageChops 
 from discord.ext.commands import has_permissions, CheckFailure, MissingRequiredArgument, BadArgument, CommandOnCooldown
-import aiofiles
 
 from bot import fork_version as v
 
@@ -43,8 +22,6 @@ class EventHandler(commands.Cog):
     def __init__(self, client):
         self.client = client
        
-
-
     @commands.Cog.listener()
     async def on_ready(self):
         print("eventhandler is ready")
@@ -84,10 +61,6 @@ class EventHandler(commands.Cog):
         if state == "on":
             await member.add_roles(role, reason="Autorole")
 
-
-
-
-
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         with open("welcome.json") as f33:    
@@ -102,8 +75,6 @@ class EventHandler(commands.Cog):
             embed.add_field(name="Goodbye!", value='**{}** left the server!'.format(member))
             embed.set_footer(text='GidBot | {}'.format(v))
             await channel.send(embed=embed)
-
-
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
@@ -262,9 +233,7 @@ class EventHandler(commands.Cog):
                 #embed.add_field(name="Before:", value="**{}**".format(before.content))
                 #embed.add_field(name="After", value="**{}**".format(after.content))
                 embed.set_footer(text="GidBot | {}".format(v))
-                return await channel.send(embed=embed)
-            
-            
+                return await channel.send(embed=embed)     
 
     @commands.Cog.listener()
     async def on_guild_channel_delete(self, channel):
@@ -291,8 +260,6 @@ class EventHandler(commands.Cog):
                     embed.set_author(name="Channel Deleted", icon_url=self.client.user.avatar_url)
                     embed.set_footer(text="GidBot | {}".format(v))
                     await channel1.send(embed=embed)
-
-
 
     @commands.Cog.listener()
     async def on_guild_channel_create(self,channel):
@@ -356,7 +323,6 @@ class EventHandler(commands.Cog):
                 embed.set_author(name="{} - Changed Nickname".format(after), icon_url=after.avatar_url)
                 embed.set_footer(text="GidBot | {}".format(v))   
                 await channel.send(embed=embed)  
-
                 
     @commands.Cog.listener()
     async def on_reaction_remove(self, reaction, user):
@@ -381,17 +347,15 @@ class EventHandler(commands.Cog):
                 embed.set_footer(text="GidBot | {}".format(v))
                 return await channel1.send(embed=embed)
             
-
-            
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
         for channel in guild.text_channels:
             if channel.permissions_for(guild.me).send_messages:                                        
                 em=discord.Embed(title="Thanks for inviting me!", description=f"Hello **{guild.name}** 👋,  I'm **Your bot name** forked from Gid, a multipurpse bot made by **Gidor#7092™**and **FightMan01**#????!\n\nType **g.help** to view the list of my commands! :smile:\nIf you need any help, or struggling setting up the bot, don't hesitate to join the [__`Support Server`__](https://discordapp.com/invite/YourInvite) :wink:", color=discord.Colour.blue())
                 await channel.send(embed=em)
-            break
-
-
+                break
+            else:
+                continue
 
 def setup(client):
     client.add_cog(EventHandler(client))
